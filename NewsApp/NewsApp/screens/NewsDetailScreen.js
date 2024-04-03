@@ -1,22 +1,25 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useContext } from "react";
 import { LISTINGS } from "../data/dummy_data";
 import BookmarkButton from "../components/BookmarkButton";
 import Colors from "../constants/colors";
-
+import { BookmarksContext } from "../store/context/bookmarks-context";
 
 // This gets the listing id 
 //Then gets all the information connected to that part 
 function NewsDetailScreen(props) {
+  const bookmarkedListingsCtx = useContext(BookmarksContext);
   const listingId = props.route.params.listingId;
   const selectedListing = LISTINGS.find((listing) => listing.id === listingId);
 
-  const [pressed, setPressed] = useState(false);
+  const listingIsBookmarked = bookmarkedListingsCtx.ids.includes(listingId)
 
-
-  //This makes the book mark button work and change colors
-  function headerButtonPressHandler() {
-    setPressed(!pressed);
+  function changeBookmarkStatusHandler(){
+    if (listingIsBookmarked){
+      bookmarkedListingsCtx.removeFavorite(listingId);
+    } else{
+      bookmarkedListingsCtx.addFavorite(listingId);
+    }
   }
 
   useLayoutEffect(() => {
@@ -25,13 +28,13 @@ function NewsDetailScreen(props) {
       headerRight: () => {
         return (
           <BookmarkButton
-            pressed={pressed}
-            onPress={headerButtonPressHandler}
+            pressed={listingIsBookmarked}
+            onPress={changeBookmarkStatusHandler}
           />
         );
       },
     });
-  }, [props.navigation, headerButtonPressHandler]);
+  }, [props.navigation, changeBookmarkStatusHandler]);
 
   //Creates the list 
   //Using the varible selectedlisting instead of props

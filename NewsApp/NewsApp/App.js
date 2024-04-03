@@ -14,6 +14,7 @@ import NewsDetailScreen from './screens/NewsDetailScreen';
 import { useCallback } from 'react';
 import  Colors  from './constants/colors';
 import { Entypo, MaterialCommunityIcons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import BookmarksContextProvider from './store/context/bookmarks-context';
 
 
 //Creates constants for all the screens 
@@ -161,6 +162,8 @@ export default function App() {
     //And the screens that have access to the Stack navigation
         <>
           <StatusBar style ="light"/>
+          <BookmarksContextProvider>
+
           <NavigationContainer>
             <Stack.Navigator
               initialRouteName="DrawerScreen"
@@ -185,6 +188,9 @@ export default function App() {
                   />
               </Stack.Navigator>
           </NavigationContainer>
+          </BookmarksContextProvider>
+
+
         </>
   );
 }
