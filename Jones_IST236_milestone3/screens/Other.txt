@@ -1,0 +1,52 @@
+                      <Stack.Screen
+                    name="EquationScreenSubtraction"
+                    component = {EquationScreenSubtraction}
+                    options= {{
+                      headerBackTileVisible: false,
+                    }}
+                  />
+
+                    <Stack.Screen
+                    name="EquationScreenDivision"
+                    component = {EquationScreenDivision}
+                    options= {{
+                      headerBackTileVisible: false,
+                    }}
+                  />
+
+                    <Stack.Screen
+                    name="EquationScreenMultiplication"
+                    component = {EquationScreenMultiplication}
+                    options= {{
+                      headerBackTileVisible: false,
+                    }}
+                  />
+
+
+
+
+//Top Navogation
+                  
+      <Stack.Screen
+        name="SubtractionLevelsScreen"
+        component = {SubtractionLevelsScreen}
+        options= {{
+          headerBackTileVisible: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="DivisionLevelsScreen"
+        component = {DivisionLevelsScreen}
+        options= {{
+          headerBackTileVisible: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="MultiplicationLevelsScreen"
+        component = {MultiplicationLevelsScreen}
+        options= {{
+          headerBackTileVisible: false,
+        }}
+      />

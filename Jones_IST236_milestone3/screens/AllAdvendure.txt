@@ -1,0 +1,63 @@
+import { View, Text , Pressable, FlatList, ScrollView} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+
+function AdventureScreen(){
+
+
+    const navigation = useNavigation();
+
+
+        function SetAdditionLevel(){
+
+        }
+        function SetSubtractionLevel(){
+            
+        }
+        function SetMultiplicationLevel(){
+            
+        }
+        function SetDivisionLevel(){
+            
+        }
+
+
+ function selectedListingHandler(){
+    navigation.navigate("LevelsScreen");
+
+ }
+    return (
+    
+    <View>
+        <Text>Creature Screen</Text>
+        <ScrollView>
+            <View>
+             <Pressable  onPress={selectedListingHandler} ><Text>
+                    Addition
+                </Text></Pressable>               
+            </View>
+
+            <View>
+             <Pressable onPress={selectedListingHandler} ><Text>
+                    Subtraction
+                </Text></Pressable>               
+            </View>
+
+            <View>
+             <Pressable onPress={selectedListingHandler} ><Text>
+                   Multiplication
+                </Text></Pressable>               
+            </View>
+
+            <View>
+             <Pressable onPress={selectedListingHandler}><Text>
+                    Division
+                </Text></Pressable>               
+            </View>
+        </ScrollView>
+
+    </View>
+    );
+}
+
+export default AdventureScreen;
