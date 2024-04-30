@@ -1,0 +1,78 @@
+import { createContext, useReducer, useState } from "react";
+//================================================================Broken
+
+const DUMMY_ORDERS = [
+    {
+        id: "#0000001",
+        url: require("../assets/images/test.png"),
+        description: 32.99,
+        type: "Open",
+      },
+      {
+        id: "#0000002",
+        url: require("../assets/images/test.png"),
+        description: "AdditionEquation",
+        type: "Background",
+      },
+      {
+        id: "#0000003",
+        url: require("../assets/images/test.png"),
+        description: "AdditionSelection",
+        type: "Background",
+      },
+
+];
+
+const AllEggLevel = [10, 50, 100, 150, 200];
+const [EggLevelPlace, setEggLevelPlace] = useState();
+
+
+export const AppContext =  createContext({
+    images: [],
+    setImages: (images) => {},
+    setUserMagic: (userMagic) => {},
+    setEggLevel: (eggLevel) => {},
+});
+
+
+function GetAll(state, action){
+        switch(action.type){
+            case "GetImages":
+                    return action.payload;
+            case "UserMagic":
+                    action.payload += state;
+                    return action.payload;
+            case "EggLevel":
+
+                    return action.payload;
+
+        }
+}
+
+
+
+function AppContextProvider({children}){
+    const [imageState, dispatch] = useReducer(GetAll, DUMMY_ORDERS);
+
+function setImages(images){
+    dispatch({type: "GetImages", payload: images});   
+}
+function setUserMagic(userMagic){
+    dispatch({type :"UserMagic", payload: userMagic});
+}
+function setEggLevel(eggLevel){
+    dispatch({type: "EggLevel", payload: eggLevel});
+}
+    
+    const value = {
+        images: imageState,
+        setImages:setImages,
+        setUserMagic: setUserMagic,
+        setEggLevel: setEggLevel, 
+    };
+return(
+    <AppContext.Provider value = {value}>{children}</AppContext.Provider>
+);
+}
+
+export default AppContextProvider;
